@@ -6,7 +6,7 @@ import { useAppContext } from "../context/appContext";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks.js";
 
-const BigSideBar = () => {
+const StandardSideBar = () => {
   const { showSideBar } = useAppContext();
   return (
     <Wrapper>
@@ -25,4 +25,4 @@ const BigSideBar = () => {
     </Wrapper>
   );
 };
-export default BigSideBar;
+export default StandardSideBar;

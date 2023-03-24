@@ -7,6 +7,7 @@ import {
   SharedLayout,
   Stats,
   AddJob,
+  CreateMeeting,
 } from "./pages/dashboard/index.js";
 
 import styled from "styled-components";
@@ -32,8 +33,9 @@ function App() {
           {/* index prop Set Stats page as default display page */}
           <Route index element={<Stats />} />
           <Route path="all-jobs" element={<AllJobs />} />
-          <Route path="all-meetings" element={<AllMeetings />} />
           <Route path="add-job" element={<AddJob />} />
+          <Route path="all-meetings" element={<AllMeetings />} />
+          <Route path="create-meeting" element={<CreateMeeting />} />
           <Route path="profile" element={<Profile />} />
         </Route>
         <Route path="/register" element={<Register />} />
