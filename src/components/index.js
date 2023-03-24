@@ -1,9 +1,9 @@
 import Alert from "./Alert";
-import BigSideBar from "./BigSideBar";
+import StandardSideBar from "./StandardSideBar";
 import FormRow from "./FormRow";
 import Logo from "./Logo";
 import Navbar from "./Navbar";
-import SmallSideBar from "./SmallSideBar";
+import MobileSideBar from "./MobileSideBar";
 import FormRowSelect from "./FormRowSelect";
 import JobsContainer from "./JobsContainer";
 import SearchContainer from "./SearchContainer";
@@ -18,8 +18,8 @@ export {
   FormRow,
   Alert,
   Navbar,
-  SmallSideBar,
-  BigSideBar,
+  MobileSideBar,
+  StandardSideBar,
   FormRowSelect,
   JobsContainer,
   SearchContainer,

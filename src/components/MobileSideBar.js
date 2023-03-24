@@ -6,7 +6,7 @@ import { useAppContext } from "../context/appContext";
 import Logo from "./Logo";
 import NavLinks from "./NavLinks.js";
 
-const SmallSideBar = () => {
+const MobileSideBar = () => {
   const { showSideBar, toggleSideBar } = useAppContext();
   return (
     <Wrapper>
@@ -28,4 +28,4 @@ const SmallSideBar = () => {
     </Wrapper>
   );
 };
-export default SmallSideBar;
+export default MobileSideBar;
