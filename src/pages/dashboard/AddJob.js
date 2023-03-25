@@ -65,7 +65,7 @@ const AddJob = () => {
           {/* Job Location */}
           <FormRow
             type="text"
-            labelText="job location"
+            labelText="Address"
             name="jobLocation"
             value={jobLocation}
             handleChange={handleJobInput}
