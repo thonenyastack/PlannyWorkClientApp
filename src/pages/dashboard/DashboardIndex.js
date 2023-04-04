@@ -5,6 +5,7 @@ import SharedLayout from "./SharedLayout";
 import Stats from "./Stats";
 import AllMeetings from "./AllMeetings";
 import CreateMeeting from "./CreateMeeting";
+import AllUsers from "./AllUsers";
 
 export {
   AddJob,
@@ -14,4 +15,5 @@ export {
   Stats,
   AllMeetings,
   CreateMeeting,
+  AllUsers,
 };

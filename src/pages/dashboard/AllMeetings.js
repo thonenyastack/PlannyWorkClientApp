@@ -1,4 +1,7 @@
-import { SearchContainer, MeetingsContainer } from "../../components/index.js";
+import {
+  SearchContainer,
+  MeetingsContainer,
+} from "../../components/ComponentIndex.js";
 
 const AllMeetings = () => {
   return (

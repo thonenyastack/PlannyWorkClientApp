@@ -5,7 +5,7 @@ import {
   Navbar,
   StandardSideBar,
   MobileSideBar,
-} from "../../components/index.js";
+} from "../../components/ComponentIndex.js";
 
 const SharedLayout = () => {
   return (

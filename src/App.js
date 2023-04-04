@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Landing, Register, Error, ProtectedRoute } from "./pages/index.js";
+import { Landing, Register, Error, ProtectedRoute } from "./pages/PageIndex.js";
 import {
   AllJobs,
   AllMeetings,
@@ -8,7 +8,8 @@ import {
   Stats,
   AddJob,
   CreateMeeting,
-} from "./pages/dashboard/index.js";
+  AllUsers,
+} from "./pages/dashboard/DashboardIndex.js";
 
 import styled from "styled-components";
 
@@ -37,6 +38,7 @@ function App() {
           <Route path="all-meetings" element={<AllMeetings />} />
           <Route path="create-meeting" element={<CreateMeeting />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="all-users" element={<AllUsers />} />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/landing" element={<Landing />} />

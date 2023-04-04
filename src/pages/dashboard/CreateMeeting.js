@@ -1,4 +1,4 @@
-import { FormRow, Alert, FormRowSelect } from "../../components";
+import { FormRow, Alert, FormRowSelect } from "../../components/ComponentIndex";
 import { useAppContext } from "../../context/appContext";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 

@@ -1,4 +1,4 @@
-import { FormRow, Alert, FormRowSelect } from "../../components";
+import { FormRow, Alert, FormRowSelect } from "../../components/ComponentIndex";
 import { useAppContext } from "../../context/appContext";
 import Wrapper from "../../assets/wrappers/DashboardFormPage";
 
@@ -6,7 +6,7 @@ const AddJob = () => {
   const {
     showAlert,
     displayAlert,
-    position,
+    jobName,
     company,
     jobLocation,
     jobType,
@@ -24,7 +24,7 @@ const AddJob = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!position || !company || !jobLocation) {
+    if (!jobName || !company || !jobLocation) {
       displayAlert();
       return;
     }
@@ -45,14 +45,14 @@ const AddJob = () => {
   return (
     <Wrapper>
       <form className="form">
-        <h3>{isEditing ? "edit job" : "add job"}</h3>
+        <h3>{isEditing ? "edit jobsheet" : "create jobsheet"}</h3>
         {showAlert && <Alert />}
         <div className="form-center">
           {/* Job Posttion */}
           <FormRow
             type="text"
-            name="position"
-            value={position}
+            name="jobname"
+            value={jobName}
             handleChange={handleJobInput}
           ></FormRow>
           {/* Company */}
