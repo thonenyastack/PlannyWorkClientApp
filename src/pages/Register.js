@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import Logo from "../components/Logo";
-import { Logo, FormRow, Alert } from "../components";
+import { Logo, FormRow, Alert } from "../components/ComponentIndex";
 import Wrapper from "../assets/wrappers/RegisterPage";
 import { useAppContext } from "../context/appContext";
 import { useNavigate } from "react-router-dom";

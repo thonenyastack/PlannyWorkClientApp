@@ -22,8 +22,8 @@ const Job = ({
       <header>
         <div className="main-icon">{company.charAt(0)} </div>
         <div className="info">
-          <h5>{position}</h5>
-          <h4>{company}</h4>
+          {/* <h5>{position}</h5> */}
+          <h5>{company}</h5>
           <h5>{date}</h5>
         </div>
       </header>

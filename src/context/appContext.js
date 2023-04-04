@@ -52,6 +52,7 @@ const initialState = {
   alertType: "",
   user: user ? JSON.parse(user) : null,
   token: token,
+  jobName: "Test Job",
   location: location || "Yangon",
   jobLocation: location || "Yangon",
   isEditing: false,
@@ -59,10 +60,10 @@ const initialState = {
   editJobId: "",
   position: "",
   company: "",
-  jobTypeOptions: ["full-time", "part-time", "remote", "on-site"],
+  jobTypeOptions: ["remote", "on-site", "ad-hoc"],
   // jobType: "full-time",
-  statusOptions: ["interview", "declined", "pending"],
-  status: "pending",
+  statusOptions: ["ongoing", "completed"],
+  status: "ongoing",
   jobs: [],
   totalJobs: 0,
   numOfPages: 1,
@@ -135,12 +136,15 @@ const AppProvider = ({ children }) => {
       dispatch({ type: CLEAR_ALERT });
     }, 3000);
   };
+
+  // Todo: Save user role in local storage
   const saveLocal = ({ token, user, location }) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("location", location);
   };
 
+  // Todo: Remove user role from local storage
   const removeLocal = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -199,6 +203,7 @@ const AppProvider = ({ children }) => {
     removeLocal();
   };
 
+  // Todo: Implement updating state for user in Reducer
   const updateUser = async (currentUser) => {
     try {
       const { data } = await authFetch.patch("/auth/updateUser", currentUser);

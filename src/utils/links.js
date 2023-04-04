@@ -6,7 +6,13 @@ import { GoCalendar } from "react-icons/go";
 
 const links = [
   { id: 1, text: "overview", path: "/", icon: <IoBarChartSharp /> },
-  { id: 2, text: "all jobs", path: "all-jobs", icon: <MdQueryStats /> },
+  {
+    id: 2,
+    text: "view all jobsheets",
+    path: "all-jobs",
+    icon: <MdQueryStats />,
+  },
+  { id: 3, text: "Create Jobsheet", path: "add-job", icon: <FaWpforms /> },
   { id: 5, text: "All Meetings", path: "all-meetings", icon: <GoCalendar /> },
   {
     id: 6,
@@ -14,8 +20,9 @@ const links = [
     path: "create-meeting",
     icon: <GoCalendar />,
   },
-  { id: 3, text: "add job", path: "add-job", icon: <FaWpforms /> },
+
   { id: 4, text: "profile", path: "profile", icon: <ImProfile /> },
+  { id: 7, text: "Teams", path: "all-users", icon: <MdQueryStats /> },
 ];
 
 export default links;
