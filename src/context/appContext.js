@@ -38,6 +38,9 @@ import {
   EDIT_MEETING_ERROR,
   GET_MEETING_BEGIN,
   GET_MEETING_SUCCESS,
+  GET_USERS_BEGIN,
+  GET_USERS_SUCCESS,
+  GET_USERS_ERROR,
 } from "./actions";
 // import { response } from "express";
 
@@ -51,6 +54,7 @@ const initialState = {
   alertText: "",
   alertType: "",
   user: user ? JSON.parse(user) : null,
+  role: "",
   token: token,
   jobName: "Test Job",
   location: location || "Yangon",
@@ -65,6 +69,7 @@ const initialState = {
   statusOptions: ["ongoing", "completed"],
   status: "ongoing",
   jobs: [],
+  users: [],
   totalJobs: 0,
   numOfPages: 1,
   page: 1,
@@ -138,10 +143,11 @@ const AppProvider = ({ children }) => {
   };
 
   // Todo: Save user role in local storage
-  const saveLocal = ({ token, user, location }) => {
+  const saveLocal = ({ token, user, location, role }) => {
     localStorage.setItem("token", token);
     localStorage.setItem("user", JSON.stringify(user));
     localStorage.setItem("location", location);
+    localStorage.setItem("role", role);
   };
 
   // Todo: Remove user role from local storage
@@ -149,6 +155,7 @@ const AppProvider = ({ children }) => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     localStorage.removeItem("location");
+    localStorage.removeItem("role");
   };
 
   const registerUser = async (currentUser) => {
@@ -179,14 +186,14 @@ const AppProvider = ({ children }) => {
     try {
       const { data } = await axios.post("/api/v1/auth/login", currentUser);
       console.log(data);
-      const { user, token, location } = data;
+      const { user, token, location, role } = data;
       console.log(location);
       dispatch({
         type: LOGIN_USER_SUCCESS,
-        payload: { user, token, location },
+        payload: { user, token, location, role },
       });
       // Todo: save in local storage later
-      saveLocal({ token, user, location });
+      saveLocal({ token, user, location, role });
       // addUserToLocalStorage({ user, token, location });
     } catch (error) {
       // console.log(error.response);
@@ -209,6 +216,24 @@ const AppProvider = ({ children }) => {
       const { data } = await authFetch.patch("/auth/updateUser", currentUser);
       console.log(data);
     } catch (error) {
+      console.log(error.response);
+    }
+  };
+
+  const getUsers = async (currentUser) => {
+    dispatch({ type: GET_USERS_BEGIN });
+    try {
+      const { data } = await authFetch.get("/auth/listUsers", currentUser);
+      const { userRole } = data;
+      dispatch({
+        type: GET_USERS_SUCCESS,
+        payload: {
+          userRole,
+        },
+      });
+      console.log(data);
+    } catch (error) {
+      dispatch({ type: GET_USERS_ERROR });
       console.log(error.response);
     }
   };
@@ -403,6 +428,7 @@ const AppProvider = ({ children }) => {
         resetFilters,
         createMeeting,
         getMeetings,
+        getUsers,
       }}
     >
       {children}
