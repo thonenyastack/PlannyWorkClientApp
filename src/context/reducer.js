@@ -33,6 +33,8 @@ import {
   SET_EDIT_MEETING,
   GET_MEETING_BEGIN,
   GET_MEETING_SUCCESS,
+  GET_USERS_BEGIN,
+  GET_USERS_SUCCESS,
 } from "./actions";
 
 import { initialState } from "./appContext";
@@ -92,6 +94,7 @@ const AppReducer = (state, action) => {
       isLoading: false,
       token: action.payload.token,
       user: action.payload.user,
+      role: action.payload.role,
       location: action.payload.location,
       jobLocation: action.payload.location,
       showAlert: true,
@@ -182,6 +185,18 @@ const AppReducer = (state, action) => {
       jobs: action.payload.jobs,
       totalJobs: action.payload.totalJobs,
       numOfPages: action.payload.numOfPages,
+    };
+  }
+
+  if (action.type === GET_USERS_BEGIN) {
+    return { ...state, isLoading: true, showAlert: false };
+  }
+
+  if (action.type === GET_USERS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      users: action.payload.userRole,
     };
   }
 
