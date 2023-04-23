@@ -23,6 +23,7 @@ const links = [
 
   { id: 4, text: "profile", path: "profile", icon: <ImProfile /> },
   { id: 7, text: "Teams", path: "all-users", icon: <MdQueryStats /> },
+  // { id: 8, text: "User Jobs", path: "user-job" },
 ];
 
 export default links;
