@@ -27,7 +27,7 @@ Amazon AWS
 
 To run this project locally on your machine.
 
-- For the Repo
+- Fork the Repo
 
 ```
 $ npm install
