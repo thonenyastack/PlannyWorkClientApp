@@ -6,6 +6,7 @@ const AddJob = () => {
   const {
     showAlert,
     displayAlert,
+    jobSheetNo,
     jobName,
     company,
     jobLocation,
@@ -13,6 +14,11 @@ const AddJob = () => {
     jobTypeOptions,
     status,
     statusOptions,
+    start,
+    startOptions,
+    end,
+    duration,
+    endOptions,
     isEditing,
     editJob,
     handleChange,
@@ -24,7 +30,7 @@ const AddJob = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!jobName || !company || !jobLocation) {
+    if (!jobSheetNo || !jobName || !company || !jobLocation) {
       displayAlert();
       return;
     }
@@ -34,7 +40,7 @@ const AddJob = () => {
       return;
     }
     createJob();
-    console.log("job created.");
+    // console.log("job created.");
   };
   const handleJobInput = (e) => {
     const name = e.target.name;
@@ -51,7 +57,14 @@ const AddJob = () => {
           {/* Job Posttion */}
           <FormRow
             type="text"
-            name="jobname"
+            name="jobSheetNo"
+            value={jobSheetNo}
+            handleChange={handleJobInput}
+          />
+
+          <FormRow
+            type="text"
+            name="jobName"
             value={jobName}
             handleChange={handleJobInput}
           ></FormRow>
@@ -83,6 +96,26 @@ const AddJob = () => {
             handleChange={handleJobInput}
             list={jobTypeOptions}
           />
+          <FormRowSelect
+            name="start"
+            labelText="start"
+            value={start}
+            handleChange={handleJobInput}
+            list={startOptions}
+          />
+          <FormRowSelect
+            name="end"
+            labelText="end"
+            value={end}
+            handleChange={handleJobInput}
+            list={endOptions}
+          />
+          <FormRow
+            type="text"
+            name="duration"
+            value={duration}
+            handleChange={handleJobInput}
+          />
           <div className="btn-container">
             <button
               type="submit"
@@ -97,7 +130,7 @@ const AddJob = () => {
               onClick={(e) => {
                 e.preventDefault();
                 clearValue();
-                console.log("clear value");
+                // console.log("clear value");
               }}
             >
               clear

@@ -99,7 +99,7 @@ const AppReducer = (state, action) => {
       jobLocation: action.payload.location,
       showAlert: true,
       alertType: "success",
-      alertText: "Login Successful.",
+      alertText: "Login Successful & Loading..",
     };
   }
 
