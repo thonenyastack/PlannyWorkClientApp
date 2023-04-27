@@ -27,6 +27,20 @@ const SearchContainer = () => {
     e.preventDefault();
     resetFilters();
   };
+
+  const debounce = () => {
+    let timeoutID;
+
+    return (e) => {
+      setLocalSearch(e.target.value);
+      clearTimeout(timeoutID);
+      timeoutID = setTimeout(() => {
+        handleChange({ name: e.target.name, value: e.target.value });
+      }, 1000);
+    };
+  };
+
+  const cachedSearch = useMemo(() => debounce(), []);
   return (
     <Wrapper>
       <form className="form">
@@ -35,8 +49,8 @@ const SearchContainer = () => {
           <FormRow
             type="text"
             name="search"
-            value={search}
-            handleChange={handleSearch}
+            value={localSearch}
+            handleChange={cachedSearch}
           ></FormRow>
 
           <FormRowSelect

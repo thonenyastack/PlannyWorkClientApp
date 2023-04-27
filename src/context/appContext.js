@@ -56,7 +56,8 @@ const initialState = {
   user: user ? JSON.parse(user) : null,
   role: "",
   token: token,
-  jobName: "Test Job",
+  jobSheetNo: "",
+  jobName: "",
   location: location || "Yangon",
   jobLocation: location || "Yangon",
   isEditing: false,
@@ -68,6 +69,11 @@ const initialState = {
   // jobType: "full-time",
   statusOptions: ["ongoing", "completed"],
   status: "ongoing",
+  startOptions: ["9:00", "9:30"],
+  start: "9:00",
+  endOptions: ["9:30", "10:00", "10:30"],
+  end: "10:00",
+  duration: "",
   jobs: [],
   users: [],
   totalJobs: 0,
@@ -270,13 +276,27 @@ const AppProvider = ({ children }) => {
   const createJob = async () => {
     dispatch({ type: CREATE_JOB_BEGIN });
     try {
-      const { position, company, jobLocation, jobType, status } = state;
-      await authFetch.post("/jobs", {
-        position,
+      const {
+        jobSheetNo,
+        jobName,
         company,
         jobLocation,
         jobType,
         status,
+        start,
+        end,
+        duration,
+      } = state;
+      await authFetch.post("/jobs", {
+        jobSheetNo,
+        jobName,
+        company,
+        jobLocation,
+        jobType,
+        status,
+        start,
+        end,
+        duration,
       });
       dispatch({ type: CREATE_JOB_SUCCESS });
       dispatch({ type: CLEAR_VALUES });
