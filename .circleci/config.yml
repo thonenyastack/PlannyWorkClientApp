@@ -42,7 +42,7 @@ jobs:
           name: Build Project
           command: |
             npm install
-            npm run build
+            CI=false npm run build
             cd build 
             zip ../build.zip -r * .[^.]*
             echo "Build successful"
@@ -70,7 +70,7 @@ jobs:
           name: Build Project
           command: |
             npm install
-            npm run build
+            CI=false npm run build
             cd build 
             zip ../build.zip -r * .[^.]*
             echo "Build successful"
