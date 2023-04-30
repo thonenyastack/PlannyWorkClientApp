@@ -17,39 +17,39 @@ jobs:
       - run:
           name: Install depenencies
           command: npm install
-       - save_cache:
+      - save_cache:
           paths:
             - node_modules
           key: app-{{ checksum "package.json"}}
 
   deploy-to-aws-s3:
-      docker:
-        - image: circleci/node:13.12.0
-      working_directory: ~/repo
-      steps:
-        - checkout
-        - run:
-            name: Show current branch
-            command: echo ${CIRCLE_BRANCH}
-        - run:  
-            name: Installing AWS CLI
-            working_directory: /
-            command: | 
-              sudo apt-get -y -qq update
-              sudo apt-get install -y awscli
-              sudo apt-get install -y python-pip python-dev build-essential
-        - run:
-            name: Build Project
-            command: |
-              npm install
-              npm run build
-              cd build 
-              zip ../build.zip -r * .[^.]*
-              echo "Build successful"
-        - run:
-            name: Deploy to AWS S3
-            command: aws --region ${AWS_REGION} s3 sync ~/repo/build s3://${AWS_BUCKET_DEV} --delete
-              
+    docker:
+      - image: circleci/node:13.12.0
+    working_directory: ~/repo
+    steps:
+      - checkout
+      - run:
+          name: Show current branch
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: Installing AWS CLI
+          working_directory: /
+          command: |
+            sudo apt-get -y -qq update
+            sudo apt-get install -y awscli
+            sudo apt-get install -y python-pip python-dev build-essential
+      - run:
+          name: Build Project
+          command: |
+            npm install
+            npm run build
+            cd build 
+            zip ../build.zip -r * .[^.]*
+            echo "Build successful"
+      - run:
+          name: Deploy to AWS S3
+          command: aws --region ${AWS_REGION} s3 sync ~/repo/build s3://${AWS_BUCKET_DEV} --delete
+
   deploy-to-aws-cloudfront:
     docker:
       - image: circleci/node:13.12.0
@@ -59,10 +59,10 @@ jobs:
       - run:
           name: Show current branch
           command: echo ${CIRCLE_BRANCH}
-      - run:  
+      - run:
           name: Installing AWS CLI
           working_directory: /
-          command: | 
+          command: |
             sudo apt-get -y -qq update
             sudo apt-get install -y awscli
             sudo apt-get install -y python-pip python-dev build-essential
@@ -79,27 +79,25 @@ jobs:
           command: |
             aws configure set preview.cloudfront true
             aws cloudfront create-invalidation --distribution-id ${DEV_DISTRIBUTION_ID} --paths /\*
-                 
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 
-workflows: 
+workflows:
   build_and_deploy:
     jobs:
       - build
       - deploy-to-aws-s3:
-          requires: 
+          requires:
             - build
           filters:
-            branches: 
+            branches:
               only:
                 - develop
       - deploy-to-aws-cloudfront:
-          requires: 
+          requires:
             - deploy-to-aws-s3
           filters:
-            branches: 
+            branches:
               only:
                 - develop
-
-
