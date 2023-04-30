@@ -37,7 +37,7 @@ jobs:
           command: |
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip
-            sudo apt-get install -y awsebcli --upgrade
+            sudo apt-get install -y awscli
       - run:
           name: Build Project
           command: |
@@ -65,7 +65,7 @@ jobs:
           command: |
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip
-            sudo apt-get install -y awsebcli --upgrade
+            sudo apt-get install -y awscli
       - run:
           name: Build Project
           command: |
