@@ -54,6 +54,7 @@ const initialState = {
   alertText: "",
   alertType: "",
   user: user ? JSON.parse(user) : null,
+  // user: null,
   role: "",
   token: token,
   jobSheetNo: "",
